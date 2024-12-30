@@ -8,17 +8,23 @@ type Config struct {
 	AppSecret string `json:"app_secret"`
 	Sign      string `json:"sign"`
 	Version   string `json:"version"`
+	Timestamp string `json:"timestamp"`
+	TransID   string `json:"trans_id"`
 }
 
 // NewConfig 创建一个新的配置实例
 func NewConfig(conf *Config) *Config {
-	sign := GenerateSignature(conf.AppID, conf.AppSecret)
+	timestamp := GetCurrentTimestamp()
+	transID := GenerateSerialNumber()
+	sign := GenerateSignature(conf.AppID, conf.AppSecret, timestamp, transID)
 	return &Config{
 		ApiURL:    conf.ApiURL,
 		AppID:     conf.AppID,
 		AppSecret: conf.AppSecret,
 		Sign:      sign,
 		Version:   conf.Version,
+		Timestamp: timestamp,
+		TransID:   transID,
 	}
 }
 func (c *Config) String() string {
