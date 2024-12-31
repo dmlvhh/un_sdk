@@ -94,3 +94,12 @@ type WsEditTerminalRes struct {
 
 type WsGetTerminalUsageDataDetailsRes struct {
 }
+
+type WsQueryAcctTableRes struct {
+}
+
+type WsGetTerminalEventsRes struct {
+}
+
+type LocationBasedServiceRes struct {
+}

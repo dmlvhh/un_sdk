@@ -27,7 +27,7 @@ import (
     *
 */
 //WsGetTerminalDetails 查询设备详情
-func (c *Config) WsGetTerminalDetails(req *WsGetTerminalUsageReq) (res *WsGetTerminalDetailsRes, err error) {
+func (c *Config) WsGetTerminalDetails(req *WsGetTerminalDetailsReq) (res *WsGetTerminalDetailsRes, err error) {
 	request, err := ApiRequest("/wsGetTerminalDetails", req)
 	if err != nil {
 		log.Fatalf("wsGetTerminalDetails: %s", err)
@@ -55,6 +55,49 @@ func (c *Config) WsGetTerminalUsageDataDetails(req *WsGetTerminalUsageDataDetail
 	request, err := ApiRequest("/wsGetTerminalUsageDataDetails", req)
 	if err != nil {
 		log.Fatalf("wsGetTerminalUsageDataDetails: %s", err)
+		return
+	}
+	err = json.Unmarshal([]byte(request), &res)
+	return
+}
+
+// WsGetTerminalUsage 查询设备用量
+func (c *Config) WsGetTerminalUsage(req *WsGetTerminalUsageReq) (res *WsGetTerminalUsageRes, err error) {
+	request, err := ApiRequest("/wsGetTerminalUsage", req)
+	if err != nil {
+		log.Fatalf("wsGetTerminalUsage: %s", err)
+		return
+	}
+	err = json.Unmarshal([]byte(request), &res)
+	return
+}
+
+func (c *Config) WsQueryAcctTable(req *Request) (res *WsQueryAcctTableRes, err error) {
+	request, err := ApiRequest("/wsQueryAcctTable", req)
+	if err != nil {
+		log.Fatalf("WsQueryAcctTable: %s", err)
+		return
+	}
+	err = json.Unmarshal([]byte(request), &res)
+	return
+}
+
+// WsGetTerminalEvents 查询指定设备关联的事件资费计划
+func (c *Config) WsGetTerminalEvents(req *WsGetTerminalEventsReq) (res *WsGetTerminalEventsRes, err error) {
+	request, err := ApiRequest("/wsGetTerminalEvents", req)
+	if err != nil {
+		log.Fatalf("wsGetTerminalEvents: %s", err)
+		return
+	}
+	err = json.Unmarshal([]byte(request), &res)
+	return
+}
+
+// 立即定位服务https://gwapi.10646.cn/api/LocationBasedService/V1.0
+func (c *Config) LocationBasedService(req *Request) (res *LocationBasedServiceRes, err error) {
+	request, err := ApiRequest("/LocationBasedService/V1.0", req)
+	if err != nil {
+		log.Fatalf("LocationBasedService: %s", err)
 		return
 	}
 	err = json.Unmarshal([]byte(request), &res)

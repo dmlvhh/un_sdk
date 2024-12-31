@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"crypto/tls"
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -28,7 +27,7 @@ func ApiRequest(url string, data any) (res string, err error) {
 		Token:     unSdk.Sign,
 		Data:      data,
 	})
-	fmt.Println(string(reqData))
+	//fmt.Println(string(reqData))
 	if err != nil {
 		log.Printf("Error Marshal: %s", err)
 		return
@@ -37,7 +36,7 @@ func ApiRequest(url string, data any) (res string, err error) {
 		TLSClientConfig: &tls.Config{InsecureSkipVerify: true}, // 不安全，仅用于测试
 	}
 	apiUrl := unSdk.ApiURL + url + unSdk.Version
-	fmt.Println(apiUrl)
+	//fmt.Println(apiUrl)
 	client := &http.Client{Transport: tr}
 	resp, err := client.Post(apiUrl, "application/json", bytes.NewBuffer(reqData))
 	if err != nil {
