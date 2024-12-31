@@ -2,7 +2,6 @@ package un_sdk
 
 import (
 	"encoding/json"
-	"fmt"
 	"log"
 )
 
@@ -35,7 +34,6 @@ func (c *Config) WsGetTerminalDetails(req *WsGetTerminalUsageReq) (res *WsGetTer
 		return
 	}
 	err = json.Unmarshal([]byte(request), &res)
-	fmt.Println(err)
 	return
 }
 
@@ -50,7 +48,6 @@ func (c *Config) WsEditTerminal(req *WsEditTerminalReq) (res *WsEditTerminalRes,
 		return
 	}
 	err = json.Unmarshal([]byte(request), &res)
-	fmt.Println(err)
 	return
 }
 
@@ -60,8 +57,6 @@ func (c *Config) WsGetTerminalUsageDataDetails(req *WsGetTerminalUsageDataDetail
 		log.Fatalf("wsGetTerminalUsageDataDetails: %s", err)
 		return
 	}
-	fmt.Println(request)
 	err = json.Unmarshal([]byte(request), &res)
-	fmt.Println(err)
 	return
 }
