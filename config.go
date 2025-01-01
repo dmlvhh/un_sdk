@@ -10,6 +10,7 @@ type Config struct {
 	Version   string `json:"version"`
 	Timestamp string `json:"timestamp"`
 	TransID   string `json:"trans_id"`
+	OpenId    string `json:"openId"`
 }
 
 // NewConfig 创建一个新的配置实例
@@ -25,6 +26,7 @@ func NewConfig(conf *Config) *Config {
 		Version:   conf.Version,
 		Timestamp: timestamp,
 		TransID:   transID,
+		OpenId:    conf.OpenId,
 	}
 }
 func (c *Config) String() string {

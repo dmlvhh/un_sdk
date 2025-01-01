@@ -11,14 +11,31 @@ import (
 
 var unSdk *Config
 
+//	func init() {
+//		unSdk = NewConfig(&Config{
+//			ApiURL:    "https://gwapi.10646.cn/api",
+//			AppID:     "PNqMsNLn11",
+//			AppSecret: "c25epLsMZIFJVasfxhfVxBthc5Ivl3",
+//			Version:   "/V1/1Main/vV1.1",
+//		})
+//	}http://ww.asyw.tianiot.com/index/index/ydToken?appid=bbO7egzjW5&chl_id=14
 func init() {
 	unSdk = NewConfig(&Config{
 		ApiURL:    "https://gwapi.10646.cn/api",
-		AppID:     "PNqMsNLn11",
-		AppSecret: "c25epLsMZIFJVasfxhfVxBthc5Ivl3",
+		AppID:     "bbO7egzjW5",
+		AppSecret: "wwpsyL5eACfU3RKgeqOmCNS8MwIotd",
 		Version:   "/V1/1Main/vV1.1",
 	})
 }
+
+//	func init() {
+//		unSdk = NewConfig(&Config{
+//			ApiURL:    "https://gwapi.10646.cn/api",
+//			AppID:     "w7nvRf4SgT",
+//			AppSecret: "3PCekmpj1pTBk2Gwi8XVTxH6aaRVwQ",
+//			Version:   "/V1/1Main/vV1.1",
+//		})
+//	}
 func ApiRequest(url string, data any) (res string, err error) {
 	reqData, err := json.Marshal(Request{
 		AppID:     unSdk.AppID,
