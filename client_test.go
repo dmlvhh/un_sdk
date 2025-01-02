@@ -6,7 +6,7 @@ import (
 )
 
 func TestApiRequest(t *testing.T) {
-	request, err := ApiRequest("/wsGetTerminalDetails", WsGetTerminalDetails{
+	request, err := unSdk.ApiRequest("/wsGetTerminalDetails", WsGetTerminalDetails{
 		MessageId: "1",
 		//OpenId:    "35858ouPtS8WqMB",
 		OpenId: "32913oucTnkZIeP",

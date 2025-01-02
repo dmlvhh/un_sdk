@@ -28,7 +28,7 @@ import (
 */
 //WsGetTerminalDetails 查询设备详情
 func (c *Config) WsGetTerminalDetails(req *WsGetTerminalDetailsReq) (res *WsGetTerminalDetailsRes, err error) {
-	request, err := ApiRequest("/wsGetTerminalDetails", req)
+	request, err := c.ApiRequest("/api/wsGetTerminalDetails", req)
 	if err != nil {
 		log.Fatalf("wsGetTerminalDetails: %s", err)
 		return
@@ -42,7 +42,7 @@ func (c *Config) WsGetTerminalDetails(req *WsGetTerminalDetailsReq) (res *WsGetT
 // 除 6: 已更换 7: 库存 8: 开始 9:预清除
 // WsEditTerminal 为给定设备更改属性的值
 func (c *Config) WsEditTerminal(req *WsEditTerminalReq) (res *WsEditTerminalRes, err error) {
-	request, err := ApiRequest("/wsEditTerminal", req)
+	request, err := c.ApiRequest("/api/wsEditTerminal", req)
 	if err != nil {
 		log.Fatalf("wsEditTerminal: %s", err)
 		return
@@ -52,7 +52,7 @@ func (c *Config) WsEditTerminal(req *WsEditTerminalReq) (res *WsEditTerminalRes,
 }
 
 func (c *Config) WsGetTerminalUsageDataDetails(req *WsGetTerminalUsageDataDetailsReq) (res *WsGetTerminalUsageDataDetailsRes, err error) {
-	request, err := ApiRequest("/wsGetTerminalUsageDataDetails", req)
+	request, err := c.ApiRequest("/api/wsGetTerminalUsageDataDetails", req)
 	if err != nil {
 		log.Fatalf("wsGetTerminalUsageDataDetails: %s", err)
 		return
@@ -63,7 +63,7 @@ func (c *Config) WsGetTerminalUsageDataDetails(req *WsGetTerminalUsageDataDetail
 
 // WsGetTerminalUsage 查询设备用量
 func (c *Config) WsGetTerminalUsage(req *WsGetTerminalUsageReq) (res *WsGetTerminalUsageRes, err error) {
-	request, err := ApiRequest("/wsGetTerminalUsage", req)
+	request, err := c.ApiRequest("/api/wsGetTerminalUsage", req)
 	if err != nil {
 		log.Fatalf("wsGetTerminalUsage: %s", err)
 		return
@@ -73,7 +73,7 @@ func (c *Config) WsGetTerminalUsage(req *WsGetTerminalUsageReq) (res *WsGetTermi
 }
 
 func (c *Config) WsQueryAcctTable(req *Request) (res *WsQueryAcctTableRes, err error) {
-	request, err := ApiRequest("/wsQueryAcctTable", req)
+	request, err := c.ApiRequest("/api/wsQueryAcctTable", req)
 	if err != nil {
 		log.Fatalf("WsQueryAcctTable: %s", err)
 		return
@@ -84,7 +84,7 @@ func (c *Config) WsQueryAcctTable(req *Request) (res *WsQueryAcctTableRes, err e
 
 // WsGetTerminalEvents 查询指定设备关联的事件资费计划
 func (c *Config) WsGetTerminalEvents(req *WsGetTerminalEventsReq) (res *WsGetTerminalEventsRes, err error) {
-	request, err := ApiRequest("/wsGetTerminalEvents", req)
+	request, err := c.ApiRequest("/api/wsGetTerminalEvents", req)
 	if err != nil {
 		log.Fatalf("wsGetTerminalEvents: %s", err)
 		return
@@ -95,7 +95,7 @@ func (c *Config) WsGetTerminalEvents(req *WsGetTerminalEventsReq) (res *WsGetTer
 
 // 立即定位服务https://gwapi.10646.cn/api/LocationBasedService/V1.0
 func (c *Config) LocationBasedService(req *Request) (res *LocationBasedServiceRes, err error) {
-	request, err := ApiRequest("/LocationBasedService/V1.0", req)
+	request, err := c.ApiRequest("/api/LocationBasedService/V1.0", req)
 	if err != nil {
 		log.Fatalf("LocationBasedService: %s", err)
 		return

@@ -14,7 +14,7 @@ type Config struct {
 }
 
 // NewConfig 创建一个新的配置实例
-func NewConfig(conf *Config) *Config {
+func NewConfig2(conf *Config) *Config {
 	timestamp := GetCurrentTimestamp()
 	transID := GenerateSerialNumber()
 	sign := GenerateSignature(conf.AppID, conf.AppSecret, timestamp, transID)
@@ -27,6 +27,20 @@ func NewConfig(conf *Config) *Config {
 		Timestamp: timestamp,
 		TransID:   transID,
 		OpenId:    conf.OpenId,
+	}
+}
+func NewConfig(apiURL, appID, appSecret, version, OpenId string) *Config {
+	timestamp := GetCurrentTimestamp() // 获取当前时间戳
+	transID := GenerateSerialNumber()  // 生成一个交易
+	return &Config{
+		ApiURL:    apiURL,
+		AppID:     appID,
+		OpenId:    OpenId,
+		AppSecret: appSecret,
+		Version:   version,
+		Timestamp: timestamp,                                               // 假设你有一个函数来生成当前时间戳
+		TransID:   transID,                                                 // 假设你有一个函数生成唯一的 TransID
+		Sign:      GenerateSignature(appID, appSecret, timestamp, transID), // 签名生成
 	}
 }
 func (c *Config) String() string {

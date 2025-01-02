@@ -4,12 +4,13 @@ import (
 	"bytes"
 	"crypto/tls"
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
 )
 
-var unSdk *Config
+//var unSdk *Config
 
 //	func init() {
 //		unSdk = NewConfig(&Config{
@@ -19,32 +20,28 @@ var unSdk *Config
 //			Version:   "/V1/1Main/vV1.1",
 //		})
 //	}http://ww.asyw.tianiot.com/index/index/ydToken?appid=bbO7egzjW5&chl_id=14
-func init() {
-	unSdk = NewConfig(&Config{
-		ApiURL:    "https://gwapi.10646.cn/api",
-		AppID:     "bbO7egzjW5",
-		AppSecret: "wwpsyL5eACfU3RKgeqOmCNS8MwIotd",
-		Version:   "/V1/1Main/vV1.1",
-	})
-}
+//func init() {
+//	unSdk = NewConfig(&Config{
+//		ApiURL:    "https://gwapi.10646.cn/api",
+//		AppID:     "bbO7egzjW5",
+//		AppSecret: "wwpsyL5eACfU3RKgeqOmCNS8MwIotd",
+//		Version:   "/V1/1Main/vV1.1",
+//	})
+//}
 
 //	func init() {
-//		unSdk = NewConfig(&Config{
-//			ApiURL:    "https://gwapi.10646.cn/api",
-//			AppID:     "w7nvRf4SgT",
-//			AppSecret: "3PCekmpj1pTBk2Gwi8XVTxH6aaRVwQ",
-//			Version:   "/V1/1Main/vV1.1",
-//		})
+//		unSdk = NewConfig()
 //	}
-func ApiRequest(url string, data any) (res string, err error) {
+func (c *Config) ApiRequest(url string, data any) (res string, err error) {
 	reqData, err := json.Marshal(Request{
-		AppID:     unSdk.AppID,
-		Timestamp: unSdk.Timestamp,
-		TransID:   unSdk.TransID,
-		Token:     unSdk.Sign,
+		AppID:     c.AppID,
+		Timestamp: c.Timestamp,
+		TransID:   c.TransID,
+		Token:     c.Sign,
 		Data:      data,
 	})
 	//fmt.Println(string(reqData))
+	fmt.Println("c", c)
 	if err != nil {
 		log.Printf("Error Marshal: %s", err)
 		return
@@ -52,8 +49,8 @@ func ApiRequest(url string, data any) (res string, err error) {
 	tr := &http.Transport{
 		TLSClientConfig: &tls.Config{InsecureSkipVerify: true}, // 不安全，仅用于测试
 	}
-	apiUrl := unSdk.ApiURL + url + unSdk.Version
-	//fmt.Println(apiUrl)
+	apiUrl := c.ApiURL + url + c.Version
+	fmt.Println(apiUrl)
 	client := &http.Client{Transport: tr}
 	resp, err := client.Post(apiUrl, "application/json", bytes.NewBuffer(reqData))
 	if err != nil {

@@ -6,6 +6,18 @@ import (
 	"testing"
 )
 
+var unSdk Config
+
+func init() {
+	unSdk = *NewConfig(
+		"https://gwapi.10646.cn/api",
+		"bbO7egzjW5",
+		"wwpsyL5eACfU3RKgeqOmCNS8MwIotd",
+		"/V1/1Main/vV1.1",
+		"dasdas",
+	)
+}
+
 func TestConfig_WsGetTerminalDetails(t *testing.T) {
 	res, err := unSdk.WsGetTerminalDetails(&WsGetTerminalDetailsReq{
 		MessageId: "123456",
